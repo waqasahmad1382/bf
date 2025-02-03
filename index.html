@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Celebration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .popup {
+      display: none;
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      font-size: 24px;
+      color: #333;
+    }
+
+    .popup h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .popup button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup button:hover {
+      background-color: #45a049;
+    }
+
+    .balloon {
+      position: absolute;
+      background-color: #ff6347;
+      border-radius: 50%;
+      width: 50px;
+      height: 70px;
+      animation: floatBalloon 4s infinite;
+    }
+
+    @keyframes floatBalloon {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+      }
+    }
+
+    .rose {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: riseRose 5s infinite;
+    }
+
+    .rose img {
+      width: 50px;
+    }
+
+    @keyframes riseRose {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="popup" id="birthdayPopup">
+    <h1>🎉 Happy Birthday! 🎉</h1>
+    <p>Wishing you all the best on your special day!</p>
+    <button onclick="closePopup()">Thank you!</button>
+  </div>
+
+  <div id="balloonContainer"></div>
+  <div id="roseContainer"></div>
+
+  <script>
+    // Function to show the birthday popup
+    window.onload = function() {
+      setTimeout(function() {
+        document.getElementById('birthdayPopup').style.display = 'block';
+      }, 1000);
+    };
+
+    // Close the popup
+    function closePopup() {
+      document.getElementById('birthdayPopup').style.display = 'none';
+    }
+
+    // Function to generate random balloons
+    function createBalloon() {
+      let balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      balloon.style.left = Math.random() * 100 + 'vw';
+      balloon.style.animationDuration = Math.random() * 3 + 3 + 's';
+      document.getElementById('balloonContainer').appendChild(balloon);
+    }
+
+    // Function to generate random roses
+    function createRose() {
+      let rose = document.createElement('div');
+      rose.classList.add('rose');
+      let img = document.createElement('img');
+      img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Red_Rose.jpg/800px-Red_Rose.jpg'; // Replace with any image URL
+      rose.appendChild(img);
+      rose.style.left = Math.random() * 100 + 'vw';
+      rose.style.animationDuration = Math.random() * 5 + 5 + 's';
+      document.getElementById('roseContainer').appendChild(rose);
+    }
+
+    // Create balloons and roses at intervals
+    setInterval(createBalloon, 300);
+    setInterval(createRose, 400);
+
+  </script>
+</body>
+</html>
